@@ -1,31 +1,32 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import React from 'react';
 
-function Profile() {
+function MyPosts(props) {
+  const postsElements = props.state.posts.map((p) => (
+    <Post message={p.message} countLike={p.countLike} />
+  ));
 
-  const posts = [
-    {id: 1, message: "hi, i am here", countLike: 20,},
-    {id: 2, message: "goodbye", countLike: 15,},
-    {id: 3, message: "good morning", countLike: 1,},
-  ]
+  const newPostElement = React.createRef();
 
-  const postsElements = posts.map(p => <Post message={p.message} countLike={p.countLike} />)
+  const onPostChange = () => {
+    const text = newPostElement.current.value;
+    props.updateNewPostText(text);
+  }
 
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea></textarea>
+          <textarea ref={newPostElement} onChange={onPostChange} value={props.state.newPostText}/>
         </div>
         <div>
-          <button>создать пост</button>
+          <button onClick={ props.addPost }>создать пост</button>
         </div>
       </div>
-      <div className={s.posts}>
-        {postsElements}
-      </div>
+      <div className={s.posts}>{postsElements}</div>
     </div>
   );
 }
-export default Profile;
+export default MyPosts;
