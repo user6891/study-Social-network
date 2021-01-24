@@ -3,26 +3,28 @@ import Post from './Post/Post';
 import React from 'react';
 
 function MyPosts(props) {
-  const postsElements = props.state.posts.map((p) => (
+  const postsElements = props.posts.map((p) => (
     <Post message={p.message} countLike={p.countLike} />
   ));
 
-  const newPostElement = React.createRef();
-
-  const onPostChange = () => {
-    const text = newPostElement.current.value;
+  const onPostChange = (e) => {
+    const text = e.target.value;
     props.updateNewPostText(text);
-  }
+  };
+
+  const onAddPost = () => {
+    props.addPost();
+  };
 
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea ref={newPostElement} onChange={onPostChange} value={props.state.newPostText}/>
+          <textarea onChange={onPostChange} value={props.newPostText} />
         </div>
         <div>
-          <button onClick={ props.addPost }>создать пост</button>
+          <button onClick={onAddPost}>создать пост</button>
         </div>
       </div>
       <div className={s.posts}>{postsElements}</div>
