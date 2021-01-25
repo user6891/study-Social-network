@@ -2,6 +2,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react';
 
+
 function MyPosts(props) {
   const postsElements = props.posts.map((p) => (
     <Post message={p.message} countLike={p.countLike} />
@@ -17,6 +18,7 @@ function MyPosts(props) {
   };
 
   return (
+
     <div className={s.postsBlock}>
       <h3>My posts</h3>
       <div>
