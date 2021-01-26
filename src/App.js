@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
@@ -18,7 +18,7 @@ function App(props) {
         <NavBarContainer />
         <div className="app-wrapper-content">
           <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/profile" render={() => <Profile />} />
+          <Route path="/profile" render={() => <ProfileContainer />} />
           <Route path="/settings" render={Settings} />
           <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/music" render={Music} />
