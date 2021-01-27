@@ -1,3 +1,6 @@
+import { profileApi, userAuthApi } from "../api/api";
+import store from "./redux-store";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET_PROFILE';
@@ -46,3 +49,18 @@ export const updateNewPostTextActionCreator = (text) => ({
 
 export const addPostActionCreator = () => ({ type: ADD_POST });
 export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
+
+export const getProfileById = (id) => {
+  console.log('1', "getProfileById", 'id=', id)
+  return dispatch => {
+    console.log('5', "getProfileById", 'id=', id)
+
+    if (!id){
+      //нужна доработка
+      id = store.getState().auth.userId || 2;
+    }
+    profileApi.getProfileById(id).then((response) => {
+      dispatch(setProfile(response));
+    })
+  }
+}

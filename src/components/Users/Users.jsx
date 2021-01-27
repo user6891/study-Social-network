@@ -26,16 +26,32 @@ function Users(props) {
           <div key={u.id}>
             <div>
               <div>
-                <NavLink to={"/profile/2"}><img
-                  src={u.photos.small || photoUser}
-                  className={style.usersImg}
-                /></NavLink>
+                <NavLink to={`/profile/${u.id}`}>
+                  <img
+                    src={u.photos.small || photoUser}
+                    className={style.usersImg}
+                  />
+                </NavLink>
               </div>
               <div>
                 {u.followed ? (
-                  <button onClick={() => props.unFollow(u.id)}>unfollow</button>
+                  <button
+                    disabled={props.followingToggleList.some(
+                      (el) => el === u.id
+                    )}
+                    onClick={() => props.unFollow(u.id)}
+                  >
+                    unfollow
+                  </button>
                 ) : (
-                  <button onClick={() => props.follow(u.id)}>follow</button>
+                  <button
+                    disabled={props.followingToggleList.some(
+                      (el) => el === u.id
+                    )}
+                    onClick={() => props.follow(u.id)}
+                  >
+                    follow
+                  </button>
                 )}
               </div>
             </div>

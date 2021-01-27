@@ -5,3 +5,11 @@
   .header img {
     width: 30px;
   }
+
+  .login {
+    float: right;
+  }
+ .userAvatar {
+   width: 30px;
+   object-fit: cover;
+ }
