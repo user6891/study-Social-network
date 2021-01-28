@@ -5,14 +5,16 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { profileApi } from '../../api/api';
+import { withAuthRedirect } from '../../hoc/authRedirect';
+import { compose } from 'redux';
 const { getProfileById } = require('../../redux/profile-reducer');
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
-    console.log('3', "componentDidMount", 'id=', userId)
+    console.log('3', 'componentDidMount', 'id=', userId);
 
     this.props.getProfileById(userId);
   }
@@ -27,6 +29,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, { getProfileById })(WithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, { getProfileById }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);

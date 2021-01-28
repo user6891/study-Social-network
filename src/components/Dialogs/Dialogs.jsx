@@ -2,6 +2,7 @@ import s from './Dialogs.module.css';
 import Message from './Message/Message';
 import React from 'react';
 import DialogsItem from './DialogsItem/DialogsItem';
+import { Redirect } from 'react-router-dom';
 
 function Dialogs(props) {
   const dialogsElement = props.dialogs.map((d) => (
@@ -20,7 +21,7 @@ function Dialogs(props) {
   const onAddMessage = () => {
     props.addMessage();
   };
-
+  
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>{dialogsElement}</div>

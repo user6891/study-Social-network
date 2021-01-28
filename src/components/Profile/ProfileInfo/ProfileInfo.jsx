@@ -1,5 +1,6 @@
 import Preloader from '../../common/Preloader/Preloader';
 import s from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 function ProfileInfo(props) {
 
@@ -8,9 +9,7 @@ function ProfileInfo(props) {
   
   return (
     <div>
-      <div>
-        <img src="https://html5css.ru/css/img_lights.jpg"></img>
-      </div>
+     <ProfileStatus status={'hello status hello'}/>
       <div className={s.descriptionBlock}>
         <div><img src={props.profile.photos.large} alt=""/></div>
         <div>{props.profile.fullName}</div>

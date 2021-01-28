@@ -9,6 +9,7 @@ import News from './components/News/News';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavBarContainer from './components/NavBar/NavBarContainer';
 import UsersContainer from './components/Users/UsersContainer';
+import Login from './components/Login/Login';
 
 function App(props) {
   return (
@@ -23,6 +24,7 @@ function App(props) {
           <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/music" render={Music} />
           <Route path="/news" render={News} />
+          <Route path="/login" render={() => <Login/>} />
         </div>
       </div>
     </BrowserRouter>
