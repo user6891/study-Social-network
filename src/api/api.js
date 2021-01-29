@@ -28,13 +28,19 @@ export const userAuthApi = {
   getUserMediaData(id) {
     return axInst.get(`profile/${id}`).then((response) => response.data);
   },
+  setProfileStatus(status) {
+    return axInst.put('profile/status/',{status}).then((response) => response.data.resultCode);
+  },
 };
 
 export const profileApi = {
+  getProfileStatusById(id) {
+    return axInst.get('profile/status/' + id);
+  },
   getProfileById(id) {
     return axInst
     .get(`profile/${id}`)
     .then((response) => response.data);
-  }
+  },
 }
 

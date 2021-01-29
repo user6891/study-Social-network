@@ -9,7 +9,7 @@ function ProfileInfo(props) {
   
   return (
     <div>
-     <ProfileStatus status={'hello status hello'}/>
+     <ProfileStatus status={props.status} setProfileStatus={props.setProfileStatus}/>
       <div className={s.descriptionBlock}>
         <div><img src={props.profile.photos.large} alt=""/></div>
         <div>{props.profile.fullName}</div>

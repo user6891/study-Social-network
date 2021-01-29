@@ -4,6 +4,7 @@ import store from "./redux-store";
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 const initialState = {
   posts: [
@@ -13,6 +14,7 @@ const initialState = {
   ],
   newPostText: 'oooooooo',
   profile: null,
+  status: '',
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -36,6 +38,10 @@ export const profileReducer = (state = initialState, action) => {
     case SET_PROFILE: {
       return { ...state, profile: action.profile, };
     }
+    case SET_STATUS: {
+      return { ...state, status: action.status, };
+    }
+    
 
     default:
       return state;
@@ -46,14 +52,16 @@ export const updateNewPostTextActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   text,
 });
+export const setStatus = (status) => ({
+  type: SET_STATUS,
+  status,
+});
 
 export const addPostActionCreator = () => ({ type: ADD_POST });
 export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
 
 export const getProfileById = (id) => {
-  console.log('1', "getProfileById", 'id=', id)
   return dispatch => {
-    console.log('5', "getProfileById", 'id=', id)
 
     if (!id){
       //нужна доработка
@@ -61,6 +69,27 @@ export const getProfileById = (id) => {
     }
     profileApi.getProfileById(id).then((response) => {
       dispatch(setProfile(response));
+    })
+  }
+}
+export const getProfileStatusById = (id) => {
+  return dispatch => {
+
+    if (!id){
+      //нужна доработка
+      id = store.getState().auth.userId || 2;
+    }
+    profileApi.getProfileStatusById(id).then((response) => {
+      dispatch(setStatus(response.data));
+    })
+  }
+}
+export const setProfileStatus = (status) => {
+  return dispatch => {
+    userAuthApi.setProfileStatus(status).then((response) => {
+      if (response === 0) {
+        dispatch(setStatus(status));
+      }
     })
   }
 }
