@@ -94,7 +94,7 @@ export const followingToggleUpdate = (isFetching, uid) => ({
 export const getUsers = (pageSize, currentPage) => {
   return (dispatch) => {
     dispatch(toggleIsFetching(true));
-    usersApi.getUsers(pageSize, currentPage).then((response) => {
+    return usersApi.getUsers(pageSize, currentPage).then((response) => {
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(response.items));
       dispatch(setTotalCount(response.totalCount));

@@ -31,6 +31,12 @@ export const userAuthApi = {
   setProfileStatus(status) {
     return axInst.put('profile/status/',{status}).then((response) => response.data.resultCode);
   },
+  login(email, password, rememberMe) {
+    return axInst.post('/auth/login',{email, password, rememberMe}).then((response) => response.data);
+  },
+  logout() {
+    return axInst.delete('auth/login').then((response) => response.data);;
+  },
 };
 
 export const profileApi = {

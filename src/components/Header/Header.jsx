@@ -7,7 +7,7 @@ function Header(props) {
     <header className={s.header}>
       <img src="https://cdn.logo.com/hotlink-ok/logo-social.png"></img>
       <div className={s.login}>
-        {props.isAuth ? props.login : <NavLink to="/login">Login</NavLink>}
+        {props.isAuth ? <div>{props.login} <button onClick={props.logout}>logout</button></div>  : <NavLink to="/login">Login</NavLink>}
         {props.avatarUrl ? (
           <div>
             <img className={s.userAvatar} src="props.avatarUrl" alt="" />
