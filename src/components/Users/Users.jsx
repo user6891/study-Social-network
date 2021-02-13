@@ -1,55 +1,37 @@
 import style from './Users.module.css';
 import photoUser from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
+import Paginator from '../common/Paginator';
 
 function Users(props) {
-  const countPages = Math.ceil(props.totalCount / props.pageSize);
-  const pages = [];
-  for (let i = 1; i <= countPages; i++) pages.push(i);
-
   return (
     <div>
-      <div>
-        {pages.map((p) => {
-          return (
-            <span
-              onClick={() => props.onPageChanged(p)}
-              className={props.currentPage === p && style.activePage}
-            >
-              {' ' + p + ' '}
-            </span>
-          );
-        })}
-      </div>
+      <Paginator
+        totalItemsCount={props.totalCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        onPageChanged={props.onPageChanged}
+      />
       {props.users.map((u) => {
         return (
           <div key={u.id}>
             <div>
               <div>
                 <NavLink to={`/profile/${u.id}`}>
-                  <img
-                    src={u.photos.small || photoUser}
-                    className={style.usersImg}
-                  />
+                  <img src={u.photos.small || photoUser} className={style.usersImg} />
                 </NavLink>
               </div>
               <div>
                 {u.followed ? (
                   <button
-                    disabled={props.followingToggleList.some(
-                      (el) => el === u.id
-                    )}
-                    onClick={() => props.unFollow(u.id)}
-                  >
+                    disabled={props.followingToggleList.some((el) => el === u.id)}
+                    onClick={() => props.unFollow(u.id)}>
                     unfollow
                   </button>
                 ) : (
                   <button
-                    disabled={props.followingToggleList.some(
-                      (el) => el === u.id
-                    )}
-                    onClick={() => props.follow(u.id)}
-                  >
+                    disabled={props.followingToggleList.some((el) => el === u.id)}
+                    onClick={() => props.follow(u.id)}>
                     follow
                   </button>
                 )}

@@ -25,9 +25,8 @@ class UsersContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
+        {this.props.isFetching ? <Preloader /> : ''}
+        {
           <Users
             totalCount={this.props.totalCount}
             unFollow={this.props.unFollow}
@@ -39,7 +38,7 @@ class UsersContainer extends React.Component {
             followingToggleList={this.props.followingToggleList}
             followingToggleUpdate={this.props.followingToggleUpdate}
           />
-        )}
+        }
       </>
     );
   }
@@ -56,7 +55,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 export default connect(mapStateToProps, {
   follow,
   unFollow,
@@ -67,8 +65,6 @@ export default connect(mapStateToProps, {
   followingToggleUpdate,
   getUsers,
 })(UsersContainer);
-
-
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {

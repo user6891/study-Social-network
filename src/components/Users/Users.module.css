@@ -1,8 +1,5 @@
 .usersImg {
-    width: 100px;
-    object-fit: cover;
-    border-radius: 50px;
-}
-.activePage {
-    font-weight: bold;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 50px;
 }
